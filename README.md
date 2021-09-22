@@ -1,18 +1,14 @@
 # Delete Old Downloads (DOD)
 
-Delete Old Downloads, or DOD, is a script written in PowerShell to delete your old downloads after a pre-specified number of days. The default amount of days old a download must be to get deleted is 90 days, but it can be changed in the script to any number.
+Delete Old Downloads, or DOD, is a script written in PowerShell to delete your old downloads after a specified number of days. The default amount of days old a download must be to get deleted is 90 days, but it can be changed in the script to any number.
 
 DOD also includes a feature that can send an email of what downloads were deleted in HTML format. You must edit the 'DOD.ps1' file to include a sending email address, the senders password, a receiving address, the SMTP server URL, and port number. To make sure you can properly test your email settings, there is a "-WhatIf" parameter in the function where the downloads deletion executes. Remove the parameter once done testing to have the program delete files.
 
+The easiest way to automate this script is to create scheduled task in Windows. To create a scheduled task, see the guide below to get started.
+
 ***Please note that PowerShell does not send files/folders to the Recycle Bin, it deletes them entirely. Use this program with caution if there may be files/folders you would like to keep in your downloads folder***
 
-## Guides
-
- - [Windows 10: Setup DOD as a Scheduled Task](#Windows-10-Scheduled-Task-Setup)
- - Changing amount of time before downloads are deleted (COMING SOON)
- - Changing email options (COMING SOON)
-
-### Windows 10 Scheduled Task Setup
+## Windows 10 Scheduled Task Setup
 ![Opening task scheduler](../assets/step1.png)
 
 1. Find and launch the "Task Scheduler" program

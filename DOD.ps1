@@ -1,19 +1,13 @@
-# purpose of this script is to delete any downloads that are older than a specified amount of days and can email the results
-# Author: 7Pettay7
-
-# how many days old the downloads need to be to be deleted
-    # NOTE: must be a negative number for the script to subtract from the current date
+# how many days old you would like the downloads to be for removal (must be negative)
 $daysOld = -90
 
-# optional email inputs, see below for examples
-    # make sure to uncomment the 'MailResults' function at the bottom of script if you would like to use this feature
+# optional email inputs, see commented examples (make sure to uncomment the function call below as well)
 $sendingEmail = "" # sender@gmail.com
 $senderPw = "" # SenderPassword123
 $receivingEmail = "" # recipient@gmail.com
 $smtpServer = "" # smtp.gmail.com
 $port = 0 # 587
 
-# grabs downloads older than the specified amount of days
 function GetTargetDownloads() {
     $user = $env:USERNAME
     $downloads = "C:\Users\$user\Downloads"
@@ -23,10 +17,9 @@ function GetTargetDownloads() {
 
 function DeleteTargetDownloads() {
     GetTargetDownloads |
-        Remove-Item -Recurse -Force -WhatIf
+        Remove-Item -Recurse -Force -WhatIf # remove '-WhatIf' parameter when ready to remove files
 }
 
-# function to put together all email info and send results
 function MailResults() {
     $credentials = New-Object Management.Automation.PSCredential $sendingEmail,
         ($senderPw | ConvertTo-SecureString -AsPlainText -Force)
@@ -49,6 +42,5 @@ function MailResults() {
     Send-MailMessage @messageParams
 }
 
-# start script
 #MailResults
 DeleteTargetDownloads
